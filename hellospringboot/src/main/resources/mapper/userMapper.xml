@@ -103,11 +103,11 @@
       is_delete = #{isDelete,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <select id="login" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="login" resultMap="BaseResultMap" parameterType="hellospringboot.demo.entity.user" >
     select
     <include refid="Base_Column_List" />
     from user
     where loginname = #{loginname,jdbcType=VARCHAR} and
-    passsword = #{password,jdbcType=VARCHAR}
+    password = #{password,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -13,16 +13,17 @@ public class userServiceImpl implements userService {
     private userDAO userDao;
 
 
-    public user getuser(String loginname,String password) {
-        return userDao.login(loginname,password);
+    public user getuser(user record) {
+        return userDao.login(record);
     }
 
     public boolean adduser(user record){
         boolean result = false;
         try {
-            userDao.insertSelective(record);
+            int i = userDao.insertSelective(record);
             result = true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 

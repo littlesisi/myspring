@@ -1,0 +1,10 @@
+<div layout:decorator="shared/layout">
+    <div layout:fragment="content">
+        <div>
+            <p th:text="${user.userid}"/>
+            <p th:text="${user.username}"/>
+            <p th:text="${user.password}"/>
+            <a href="/user/register">再次注册</a>
+        </div>
+    </div>
+</div>

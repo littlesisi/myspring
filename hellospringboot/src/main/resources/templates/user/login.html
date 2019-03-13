@@ -1,9 +1,9 @@
 <div layout:decorator="shared/layout" xmlns:th="http://www.w3.org/1999/xhtml">
     <div layout:fragment="content">
-        <div>欢迎注册</div>
+        <div>欢迎登录</div>
         <div>
-            <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
-                <p>用户名: <input type="text" th:field="*{username}" /></p>
+            <form action="#" th:action="@{/user/login}" th:object="${user}" method="post">
+                <p>登录名: <input type="text" th:field="*{loginname}" /></p>
                 <p>密码: <input type="text" th:field="*{password}" /></p>
                 <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
             </form>

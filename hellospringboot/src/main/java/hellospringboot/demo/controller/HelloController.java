@@ -43,19 +43,20 @@ public class HelloController {
     }
 
     @Resource
-    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate1;
     @RequestMapping("/users1")
     private String SS(Model model){
         String sql = "SELECT * FROM S1";
-        List<S1> userList = jdbcTemplate.query(sql,new RowMapper<S1>() {
+        List<S1> userList = jdbcTemplate1.query(sql, new RowMapper<S1>() {
             S1 user = null;
-            public S1 mapRow(ResultSet rs,int rowNum) throws SQLException
-            {
+
+            public S1 mapRow(ResultSet rs, int rowNum) throws SQLException {
                 user = new S1();
                 user.setID(rs.getString("ID"));
                 user.setUser_name(rs.getString("User_name"));
                 return user;
-            }});
+            }
+        });
         for(S1 user:userList){
             System.out.println(user.getUser_name());
         }

@@ -15,5 +15,5 @@ public interface userDAO {
 
     int updateByPrimaryKey(user record);
 
-    user login(String loginname ,String password);
+    user login(user record);
 }
