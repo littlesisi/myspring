@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-bill
-</body>
-</html>
+<div layout:decorator="shared/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div layout:fragment="content">
+        <style>
+            .btn {
+                display: block;
+                width: 80%;
+                margin: 0 auto;
+                padding: 10px 0;
+                background-color: #57afeb;
+                text-align: center;
+                text-decoration: none;
+                color: #fff
+            }
+        </style>
+        <div>我的账单</div>
+        <div>
+            <div style="float: right; border: 1px solid #57afeb; border-radius: 5px;">
+                <a style="float:right;padding: 5px 20px;margin: 0;text-decoration: none; color: #333;"  onclick="getData()">上月</a>
+                <a style="float:right;padding: 5px 20px;margin: 0;background-color: #57afeb;color: #fff;text-decoration: none;" href="#">本月</a>
+            </div>
+        </div>
+        <div id="content"></div>
+        <div style="clear:both"></div>
+        <div>
+
+            <ul>
+
+                <li th:each="result:${result}">
+                    <th block th:with="suma=${result.price}"></th>
+                    <p>消费名称：<span th:text="${result.biilName}"></span></p>
+                    <p>价格：￥<span th:text="${result.price}"></span></p>
+                    <p>消费时间：<span th:text="${#dates.format(result.billtime,'yyyy-MM-dd')}"></span></p>
+                </li>
+            </ul>
+            <div>总计：<span th:text="${#aggregates.sum(result.![price])}"></span></div>
+            <div>
+                <a class="btn" href="/bill/add">新增</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    function getData() {
+        $.get("getPrevMonth",function (data) {
+            $("#content").append(data);
+
+        })
+        }
+</script>

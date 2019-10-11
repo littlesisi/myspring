@@ -1,6 +1,6 @@
 package hellospringboot.demo.service;
 
-import hellospringboot.demo.dao.S1DAO;
+import hellospringboot.demo.dao.S1Mapper;
 import hellospringboot.demo.entity.S1;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 public class S1ServiceImpl implements S1Service {
 
     @Resource
-    private S1DAO s1Dao;
+    private S1Mapper s1Dao;
 
 
     public S1 getS1ById(String ID) {
@@ -20,7 +20,7 @@ public class S1ServiceImpl implements S1Service {
     public boolean addS1(S1 record){
         boolean result = false;
         try {
-            s1Dao.insertSelective(record);
+            s1Dao.insert(record);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,7 @@
 package hellospringboot.demo.controller;
 
 import hellospringboot.demo.entity.S1;
-import hellospringboot.demo.entity.Users;
+import hellospringboot.demo.entity.User;
 import hellospringboot.demo.service.S1Service;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,15 +26,15 @@ public class HelloController {
     }
     @RequestMapping("/hello2")
     private String index2(Model model){
-        List<Users> userList = new ArrayList<Users>();
+        List<User> userList = new ArrayList<User>();
 
         for (int i = 0; i < 9; i++) {
-            Users dto = new Users();
+            User dto = new User();
 
-            dto.setId((long) i);
+            dto.setUserid("1");
             dto.setUsername("pepstack-" + i);
-            dto.setAddress("Shanghai, China");
-            dto.setAge(20 + i);
+            //dto.setAddress("Shanghai, China");
+            //dto.setAge(20 + i);
 
             userList.add(dto);
         }
@@ -52,13 +52,13 @@ public class HelloController {
 
             public S1 mapRow(ResultSet rs, int rowNum) throws SQLException {
                 user = new S1();
-                user.setID(rs.getString("ID"));
-                user.setUser_name(rs.getString("User_name"));
+                user.setId(rs.getString("ID"));
+                user.setUserName(rs.getString("User_name"));
                 return user;
             }
         });
         for(S1 user:userList){
-            System.out.println(user.getUser_name());
+            System.out.println(user.getUserName());
         }
         model.addAttribute("users", userList);
         return "hello/users1";

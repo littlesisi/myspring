@@ -1,0 +1,33 @@
+<div layout:decorator="shared/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div layout:fragment="content">
+        <style>
+            .btn {
+                display: block;
+                width: 80%;
+                margin: 0 auto;
+                padding: 10px 0;
+                background-color: #57afeb;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                border:none;
+            }
+            .form-control{
+                width:80%;
+                margin:0 auto;
+                text-align:center;
+                padding:20px;
+
+            }
+        </style>
+
+       <form action="#" th:action="@{/bill/add}" th:object="${bill}" method="post">
+           <div class="form-control"><label>名称：</label><input type="text" th:field="*{biilName}" /></div>
+           <div class="form-control"><label>金额：</label><input type="text" th:field="*{price}" /></div>
+           <div class="form-control"><label>日期：</label><input type="date" th:field="*{billtime}" /></div>
+           <div style="margin-top:50px">
+               <input class="btn" href="/bill/add" value="确定" type="submit" />
+           </div>
+       </form>
+    </div>
+</div>

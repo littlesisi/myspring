@@ -3,7 +3,7 @@ package hellospringboot.demo.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class billrecord {
+public class Billrecord extends QueryEntity {
     private String sn;
 
     private String userid;

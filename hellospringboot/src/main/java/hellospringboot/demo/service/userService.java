@@ -1,9 +1,9 @@
 package hellospringboot.demo.service;
 
-import hellospringboot.demo.entity.user;
+import hellospringboot.demo.entity.User;
 
 public interface userService {
-    public user getuser(user record);
+    public User GetUser(User record);
 
-    boolean adduser(user record);
+    boolean AddUser(User record);
 }

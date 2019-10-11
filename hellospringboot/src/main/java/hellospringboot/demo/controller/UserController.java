@@ -1,6 +1,6 @@
 package hellospringboot.demo.controller;
 
-import hellospringboot.demo.entity.user;
+import hellospringboot.demo.entity.User;
 import hellospringboot.demo.service.userService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @Controller
@@ -22,33 +24,38 @@ public class UserController {
 
     @GetMapping("/user/login")
     private String login(Model model){
-        model.addAttribute("user", new  user());
+        model.addAttribute("user", new  User());
         return "user/login";
     }
 
     @PostMapping("/user/login")
-    private String login(@ModelAttribute user user){
+    private String login(@ModelAttribute User user, HttpServletResponse response){
 
-        user logininfo = userservice.getuser(user);
-        if(logininfo == null)
+        User logininfo = userservice.GetUser(user);
+        if(logininfo == null) {
             return "user/login";
-        else
-            return "bill/index";
+        }
+        else {
+            Cookie cookie = new Cookie("user",logininfo.getUserid());
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            return "redirect:/bill/index";
+        }
     }
 
     @GetMapping("/user/register")
     private String register(Model model){
-        model.addAttribute("user", new  user());
+        model.addAttribute("user", new  User());
         return "user/register";
     }
 
     @PostMapping("/user/register")
-    private String registersubmit(@ModelAttribute user user){
+    private String registersubmit(@ModelAttribute User user){
         try {
             user.setUserid(Long.toString(System.currentTimeMillis()));
             user.setCreatetime(new Date());
             user.setLoginname(user.getUsername());
-            boolean result = userservice.adduser(user);
+            boolean result = userservice.AddUser(user);
         }
         catch (Exception e) {
             e.printStackTrace();

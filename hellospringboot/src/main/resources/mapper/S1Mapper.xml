@@ -1,58 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hellospringboot.demo.dao.S1DAO" >
-    <resultMap id="BaseResultMap" type="hellospringboot.demo.entity.S1" >
-        <id column="ID" property="ID" jdbcType="VARCHAR" />
-        <result column="User_name" property="User_name" jdbcType="VARCHAR" />
-    </resultMap>
-    <sql id="Base_Column_List" >
-        ID, User_name
-    </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-        select
-        <include refid="Base_Column_List" />
-        from s1
-        where ID = #{ID,jdbcType=VARCHAR}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-        delete from s1
-        where ID = #{ID,jdbcType=VARCHAR}
-    </delete>
-    <insert id="insert" parameterType="hellospringboot.demo.entity.S1" >
-        insert into s1 (ID, User_name)
-        values (#{ID,jdbcType=VARCHAR}, #{User_name,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" parameterType="hellospringboot.demo.entity.S1" >
-        insert into s1
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="ID != null" >
-                ID,
-            </if>
-            <if test="User_name != null" >
-                User_name,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="ID != null" >
-                #{ID,jdbcType=VARCHAR},
-            </if>
-            <if test="User_name != null" >
-                #{User_name,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="hellospringboot.demo.entity.S1" >
-        update s1
-        <set >
-            <if test="User_name != null" >
-                User_name = #{User_name,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where ID = #{ID,jdbcType=VARCHAR}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="hellospringboot.demo.entity.S1" >
-        update s1
-        set User_name = #{User_name,jdbcType=VARCHAR}
-        where ID = #{ID,jdbcType=VARCHAR}
-    </update>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hellospringboot.demo.dao.S1Mapper">
+  <resultMap id="BaseResultMap" type="hellospringboot.demo.entity.S1">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="User_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from s1
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="hellospringboot.demo.entity.S1">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into s1 (ID, User_name)
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="hellospringboot.demo.entity.S1">
+    update s1
+    set User_name = #{userName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, User_name
+    from s1
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, User_name
+    from s1
+  </select>
 </mapper>

@@ -1,0 +1,9 @@
+<ul>
+
+    <li th:each="result:${result}">
+        <th block th:with="suma=${result.price}"></th>
+        <p>消费名称：<span th:text="${result.biilName}"></span></p>
+        <p>价格：￥<span th:text="${result.price}"></span></p>
+        <p>消费时间：<span th:text="${#dates.format(result.billtime,'yyyy-MM-dd')}"></span></p>
+    </li>
+</ul>

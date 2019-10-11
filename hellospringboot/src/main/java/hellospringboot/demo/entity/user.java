@@ -2,7 +2,7 @@ package hellospringboot.demo.entity;
 
 import java.util.Date;
 
-public class user {
+public class User {
     private String userid;
 
     private String username;

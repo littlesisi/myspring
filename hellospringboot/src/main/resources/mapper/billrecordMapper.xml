@@ -1,31 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hellospringboot.demo.dao.billrecordDAO" >
-  <resultMap id="BaseResultMap" type="hellospringboot.demo.entity.billrecord" >
-    <id column="sn" property="sn" jdbcType="VARCHAR" />
-    <result column="userid" property="userid" jdbcType="VARCHAR" />
-    <result column="biil_name" property="biilName" jdbcType="VARCHAR" />
-    <result column="price" property="price" jdbcType="DECIMAL" />
-    <result column="target_name" property="targetName" jdbcType="VARCHAR" />
-    <result column="isincome" property="isincome" jdbcType="VARCHAR" />
-    <result column="bill_type" property="billType" jdbcType="VARCHAR" />
-    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="billtime" property="billtime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hellospringboot.demo.dao.BillrecordMapper">
+  <resultMap id="BaseResultMap" type="hellospringboot.demo.entity.Billrecord">
+    <id column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="biil_name" jdbcType="VARCHAR" property="biilName" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="target_name" jdbcType="VARCHAR" property="targetName" />
+    <result column="isincome" jdbcType="VARCHAR" property="isincome" />
+    <result column="bill_type" jdbcType="VARCHAR" property="billType" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="billtime" jdbcType="TIMESTAMP" property="billtime" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    sn, userid, biil_name, price, target_name, isincome, bill_type, createtime, billtime
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from billrecord
-    where sn = #{sn,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from billrecord
     where sn = #{sn,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="hellospringboot.demo.entity.billrecord" >
+  <insert id="insert" parameterType="hellospringboot.demo.entity.Billrecord">
     insert into billrecord (sn, userid, biil_name, 
       price, target_name, isincome, 
       bill_type, createtime, billtime
@@ -35,98 +26,7 @@
       #{billType,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{billtime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="hellospringboot.demo.entity.billrecord" >
-    insert into billrecord
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="sn != null" >
-        sn,
-      </if>
-      <if test="userid != null" >
-        userid,
-      </if>
-      <if test="biilName != null" >
-        biil_name,
-      </if>
-      <if test="price != null" >
-        price,
-      </if>
-      <if test="targetName != null" >
-        target_name,
-      </if>
-      <if test="isincome != null" >
-        isincome,
-      </if>
-      <if test="billType != null" >
-        bill_type,
-      </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="billtime != null" >
-        billtime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="sn != null" >
-        #{sn,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null" >
-        #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="biilName != null" >
-        #{biilName,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="targetName != null" >
-        #{targetName,jdbcType=VARCHAR},
-      </if>
-      <if test="isincome != null" >
-        #{isincome,jdbcType=VARCHAR},
-      </if>
-      <if test="billType != null" >
-        #{billType,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="billtime != null" >
-        #{billtime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hellospringboot.demo.entity.billrecord" >
-    update billrecord
-    <set >
-      <if test="userid != null" >
-        userid = #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="biilName != null" >
-        biil_name = #{biilName,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="targetName != null" >
-        target_name = #{targetName,jdbcType=VARCHAR},
-      </if>
-      <if test="isincome != null" >
-        isincome = #{isincome,jdbcType=VARCHAR},
-      </if>
-      <if test="billType != null" >
-        bill_type = #{billType,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="billtime != null" >
-        billtime = #{billtime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where sn = #{sn,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="hellospringboot.demo.entity.billrecord" >
+  <update id="updateByPrimaryKey" parameterType="hellospringboot.demo.entity.Billrecord">
     update billrecord
     set userid = #{userid,jdbcType=VARCHAR},
       biil_name = #{biilName,jdbcType=VARCHAR},
@@ -138,4 +38,21 @@
       billtime = #{billtime,jdbcType=TIMESTAMP}
     where sn = #{sn,jdbcType=VARCHAR}
   </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select sn, userid, biil_name, price, target_name, isincome, bill_type, createtime, 
+    billtime
+    from billrecord
+    where sn = #{sn,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sn, userid, biil_name, price, target_name, isincome, bill_type, createtime, 
+    billtime
+    from billrecord
+  </select>
+
+<!--<select id="GetBillList" resultMap="BaseResultMap" parameterType="java.lang.String" >-->
+  <!--select *-->
+  <!--from billrecord-->
+  <!--where userid = #{userid,jdbcType=VARCHAR}-->
+<!--</select>-->
 </mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hellospringboot.demo.dao.UserExtMapper">
+    <resultMap id="ExtUserBaseResultMap" extends="hellospringboot.demo.dao.BillrecordMapper.BaseResultMap" type="hellospringboot.demo.entity.User">
+
+    </resultMap>
+    <select id="Login" resultMap="ExtUserBaseResultMap" parameterType="hellospringboot.demo.entity.User" >
+        select
+        *
+        from user
+        where loginname = #{loginname,jdbcType=VARCHAR} and
+        password = #{password,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,28 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hellospringboot.demo.dao.userDAO" >
-  <resultMap id="BaseResultMap" type="hellospringboot.demo.entity.user" >
-    <id column="userid" property="userid" jdbcType="VARCHAR" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="loginname" property="loginname" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="is_delete" property="isDelete" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hellospringboot.demo.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="hellospringboot.demo.entity.User">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    userid, username, loginname, password, createtime, is_delete
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where userid = #{userid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where userid = #{userid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="hellospringboot.demo.entity.user" >
+  <insert id="insert" parameterType="hellospringboot.demo.entity.User">
     insert into user (userid, username, loginname, 
       password, createtime, is_delete
       )
@@ -30,71 +21,7 @@
       #{password,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="hellospringboot.demo.entity.user" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        userid,
-      </if>
-      <if test="username != null" >
-        username,
-      </if>
-      <if test="loginname != null" >
-        loginname,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="isDelete != null" >
-        is_delete,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userid != null" >
-        #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="loginname != null" >
-        #{loginname,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDelete != null" >
-        #{isDelete,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hellospringboot.demo.entity.user" >
-    update user
-    <set >
-      <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="loginname != null" >
-        loginname = #{loginname,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDelete != null" >
-        is_delete = #{isDelete,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where userid = #{userid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="hellospringboot.demo.entity.user" >
+  <update id="updateByPrimaryKey" parameterType="hellospringboot.demo.entity.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
       loginname = #{loginname,jdbcType=VARCHAR},
@@ -103,11 +30,20 @@
       is_delete = #{isDelete,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=VARCHAR}
   </update>
-  <select id="login" resultMap="BaseResultMap" parameterType="hellospringboot.demo.entity.user" >
-    select
-    <include refid="Base_Column_List" />
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select userid, username, loginname, password, createtime, is_delete
     from user
-    where loginname = #{loginname,jdbcType=VARCHAR} and
-    password = #{password,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=VARCHAR}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select userid, username, loginname, password, createtime, is_delete
+    from user
+  </select>
+  <!--<select id="Login" resultMap="BaseResultMap" parameterType="hellospringboot.demo.entity.User" >-->
+    <!--select-->
+      <!--*-->
+    <!--from user-->
+    <!--where loginname = #{loginname,jdbcType=VARCHAR} and-->
+      <!--password = #{password,jdbcType=VARCHAR}-->
+  <!--</select>-->
 </mapper>

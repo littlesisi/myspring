@@ -33,6 +33,7 @@ public class LogstInterceptor implements HandlerInterceptor {
 
     private boolean getCookie(HttpServletRequest httpServletRequest)
     {
+
         Cookie[] cookies = httpServletRequest.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){

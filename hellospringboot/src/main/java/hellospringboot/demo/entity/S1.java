@@ -1,23 +1,23 @@
 package hellospringboot.demo.entity;
 
-public class S1
-{
-    public void setUser_name(String user_name) {
-        User_name = user_name;
+public class S1 {
+    private String id;
+
+    private String userName;
+
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getUser_name() {
-        return User_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public String getID() {
-        return ID;
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
-
-    private String User_name;
-    private String ID;
 }
